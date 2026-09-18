@@ -9,27 +9,52 @@
 # formulas ourselves from scratch.
 import math
 
-# ---- INPUT ----
-# Ask the user for the coordinates of the two points.
-# float() is used so the program accepts decimal values too.
-x1 = float(input("Enter x1: "))
-y1 = float(input("Enter y1: "))
-x2 = float(input("Enter x2: "))
-y2 = float(input("Enter y2: "))
 
-# ---- PROCESS ----
-# Euclidean Distance Formula:
-# d = sqrt( (x2 - x1)^2 + (y2 - y1)^2 )
-#
-# math.pow(base, exponent) raises a number to a power.
-# math.sqrt(number) calculates the square root of a number.
-distance = math.sqrt(math.pow(x2 - x1, 2) + math.pow(y2 - y1, 2))
+def get_point(point_label):
+    """
+    Ask the user for the x and y coordinates of one point.
+    float() is used so the program accepts decimal values too.
+    Returns the coordinates as a tuple: (x, y).
+    """
+    x = float(input(f"Enter x{point_label}: "))
+    y = float(input(f"Enter y{point_label}: "))
+    return x, y
 
-# ---- OUTPUT ----
-# round(distance, 2) keeps the output to 2 decimal places,
-# matching the expected output format.
-print()
-print(f"The distance between the two points is: {round(distance, 2)}")
+
+def calculate_distance(point_a, point_b):
+    """
+    Calculate the Euclidean distance between two points.
+
+    Euclidean Distance Formula:
+    d = sqrt( (x2 - x1)^2 + (y2 - y1)^2 )
+
+    math.pow(base, exponent) raises a number to a power.
+    math.sqrt(number) calculates the square root of a number.
+    """
+    x1, y1 = point_a
+    x2, y2 = point_b
+    distance = math.sqrt(math.pow(x2 - x1, 2) + math.pow(y2 - y1, 2))
+    return distance
+
+
+def main():
+    # ---- INPUT ----
+    # Ask the user for the coordinates of the two points.
+    point_1 = get_point(1)
+    point_2 = get_point(2)
+
+    # ---- PROCESS ----
+    distance = calculate_distance(point_1, point_2)
+
+    # ---- OUTPUT ----
+    # round(distance, 2) keeps the output to 2 decimal places,
+    # matching the expected output format.
+    print()
+    print(f"The distance between the two points is: {round(distance, 2)}")
+
+
+if __name__ == "__main__":
+    main()
 
 
 # =========================================================
